@@ -1,0 +1,2621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMB — Websites for Local Businesses</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --bg: #000000;
+      --accent: #FF6B00;
+      --text: #f5f5f7;
+      --text-secondary: rgba(245, 245, 247, 0.56);
+      --text-tertiary: rgba(245, 245, 247, 0.32);
+      --border: rgba(245, 245, 247, 0.08);
+      --surface: rgba(245, 245, 247, 0.04);
+      --surface-hover: rgba(245, 245, 247, 0.07);
+      --radius-sm: 12px;
+      --radius-md: 19px;
+      --radius-lg: 25px;
+      --radius-xl: 33px;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    }
+
+    nav, section, footer {
+      position: relative;
+      z-index: 2;
+    }
+
+    body {
+      font-family: -apple-system, 'SF Pro Display', 'Inter', BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      letter-spacing: -0.01em;
+    }
+
+    /* ─── Navigation ─── */
+    nav {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background: rgba(20, 20, 25, 0.4);
+      backdrop-filter: saturate(180%) blur(21px);
+      -webkit-backdrop-filter: saturate(180%) blur(21px);
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      width: calc(100% - 48px);
+      max-width: 1050px;
+    }
+
+    .nav-container {
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.03em;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 42px;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0;
+      transition: color 0.2s var(--ease);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      padding: 8px 19px;
+      border-radius: 1019px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+      border: none;
+      cursor: pointer;
+      letter-spacing: -0.01em;
+      box-shadow: none;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.88;
+      transform: scale(0.98);
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding-top: 84px;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 1000px;
+      padding: 0 25px;
+    }
+
+    .trust-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 15px;
+      border-radius: 1019px;
+      border: 1px solid rgba(255, 107, 0, 0.25);
+      background: rgba(255, 107, 0, 0.06);
+      margin-bottom: 29px;
+    }
+
+    .trust-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .trust-badge span {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(245, 245, 247, 0.75);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 78px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
+
+    .hero-h1-sub {
+      font-size: clamp(18px, 3.2vw, 50px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-top: 0;
+      margin-bottom: 21px;
+      text-align: center;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(14px, 1.4vw, 17px);
+      font-weight: 400;
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin: 0 auto 37px;
+      letter-spacing: -0.01em;
+      line-height: 1.6;
+    }
+
+    .btn-large {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 29px;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .btn-large svg {
+      transition: transform 0.25s var(--ease);
+    }
+
+    .btn-large:hover svg {
+      transform: translateX(3px);
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 67px;
+      margin-top: 75px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: clamp(27px, 4vw, 37px);
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      margin-top: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 29px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2.4s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+
+    /* ─── Hero Mesh Background ─── */
+    .hero-mesh {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .hero-mesh canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 320px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .hero-fade-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 160px;
+      background: linear-gradient(to top, transparent, var(--bg));
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* ─── Portfolio ─── */
+    .portfolio {
+      padding: 125px 0;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 75px;
+      padding: 0 25px;
+    }
+
+    h2 {
+      font-size: clamp(33px, 5vw, 54px);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.08;
+      margin-bottom: 15px;
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      max-width: 541px;
+      margin: 0 auto;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.55;
+    }
+
+    /* ─── Marquee ─── */
+    .marquee-outer {
+      position: relative;
+      width: 100%;
+    }
+
+    .marquee-outer::before,
+    .marquee-outer::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 166px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .marquee-outer::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg) 0%, transparent 100%);
+    }
+
+    .marquee-outer::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg) 0%, transparent 100%);
+    }
+
+    .marquee-wrapper {
+      overflow-x: hidden;
+      overflow-y: visible;
+      width: 100%;
+      padding: 17px 0;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 17px;
+      width: max-content;
+      animation: marquee-scroll 35s linear infinite;
+    }
+
+    @keyframes marquee-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .portfolio-card {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--surface);
+      flex-shrink: 0;
+      width: 444px;
+      transition: transform 0.4s var(--ease), opacity 0.4s var(--ease);
+    }
+
+    .portfolio-card:hover {
+      transform: scale(1.03) translateY(-4px);
+      opacity: 0.92;
+    }
+
+    .portfolio-card img {
+      width: 444px;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ─── Services / Case Study ─── */
+    .results {
+      padding: 125px 40px;
+      background: rgba(255,255,255,0.015);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .results-inner { max-width: 1123px; margin: 0 auto; }
+
+    .results-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 20px; text-align: center;
+    }
+
+    .results-headline {
+      font-size: clamp(36px, 5vw, 58px); font-weight: 700;
+      letter-spacing: -0.04em; line-height: 1.04;
+      text-align: center; color: var(--text);
+      max-width: 680px; margin: 0 auto 64px;
+    }
+
+    .results-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: start;
+    }
+
+    @media (max-width: 799px) {
+      .results-grid { grid-template-columns: 1fr; gap: 48px; }
+      .results { padding: 80px 20px; }
+    }
+
+    .results-narrative {
+      font-size: 16px; color: var(--text-secondary);
+      line-height: 1.75; letter-spacing: -0.01em;
+    }
+    .results-narrative p + p { margin-top: 20px; }
+    .results-narrative strong { color: var(--text); font-weight: 500; }
+
+    .results-services { margin-top: 36px; display: flex; flex-direction: column; }
+
+    .service-item {
+      display: grid; grid-template-columns: 28px 1fr;
+      gap: 16px; padding: 22px 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .service-item:first-child { border-top: 0.5px solid var(--border); }
+
+    .service-num {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+      color: var(--text-tertiary); padding-top: 3px;
+    }
+
+    .service-title {
+      font-size: 15px; font-weight: 600; color: var(--text);
+      letter-spacing: -0.02em; margin-bottom: 4px;
+    }
+
+    .service-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.55; }
+
+    /* Package card */
+    .case-study-card {
+      background: rgba(255,255,255,0.03);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 33px;
+    }
+
+    .case-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 28px; padding-bottom: 24px;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .case-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(255,107,0,0.12); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+    }
+
+    .case-name { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; }
+    .case-type { font-size: 12px; color: var(--text-tertiary); margin-top: 2px; }
+
+    .case-stats {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 8px; margin-bottom: 16px; flex: 1;
+    }
+
+    .case-stat {
+      background: rgba(245,245,247,0.03); border: 0.5px solid var(--border);
+      border-radius: var(--radius-sm); padding: 18px 14px; text-align: center;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .case-stat-value {
+      font-size: 27px; font-weight: 700; color: var(--accent);
+      letter-spacing: -0.04em; line-height: 1;
+    }
+
+    .case-stat-label {
+      font-size: 10px; font-weight: 500; color: var(--text-tertiary);
+      text-transform: uppercase; letter-spacing: 0.06em; margin-top: 5px;
+    }
+
+    /* Packages timeline → feature list */
+    .pkg-features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+
+    .pkg-feature {
+      background: rgba(255,255,255,0.03); border: 0.5px solid var(--border);
+      border-radius: 10px; padding: 10px 10px; text-align: left; position: relative;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .pkg-feature.highlight { background: rgba(255,107,0,0.07); border-color: rgba(255,107,0,0.28); }
+
+    .pkg-feature-icon {
+      color: var(--accent); flex-shrink: 0;
+    }
+
+    .pkg-feature-text { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
+
+    /* ─── Who We Work With ─── */
+    .proof-section { padding: 125px 40px; }
+    .proof-inner { max-width: 1123px; margin: 0 auto; }
+
+    .proof-head { text-align: center; margin-bottom: 72px; }
+
+    .proof-section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
+    }
+
+    .proof-head h2 {
+      font-size: clamp(36px, 5vw, 56px); font-weight: 700;
+      letter-spacing: -0.04em; line-height: 1.05; color: var(--text);
+    }
+
+    .proof-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 799px) {
+      .proof-grid { grid-template-columns: 1fr; }
+      .proof-section { padding: 80px 20px; }
+    }
+
+    .proof-cell {
+      background: rgba(245,245,247,0.04);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      transition: background 0.3s var(--ease);
+    }
+    .proof-cell:hover { background: rgba(245,245,247,0.07); }
+
+    .proof-big {
+      font-size: clamp(40px, 5vw, 60px); font-weight: 700;
+      letter-spacing: -0.05em; line-height: 1;
+      color: var(--text); margin-bottom: 14px;
+    }
+    .proof-big span { color: var(--accent); }
+
+    .proof-desc {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.6; letter-spacing: -0.01em; max-width: 260px;
+    }
+
+
+    /* ─── Who We Work With — Stacked Cards ─── */
+    .stack-section {
+      padding: 125px 40px;
+    }
+    .stack-inner {
+      max-width: 1123px;
+      margin: 0 auto;
+    }
+    .ww-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+    @media (max-width: 899px) {
+      .ww-layout { grid-template-columns: 1fr; gap: 60px; }
+      .stack-section { padding: 80px 20px; }
+    }
+    .ww-copy h2 { text-align: left; margin-bottom: 16px; }
+    .ww-copy p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Stack grid: all cards share the same grid cell ── */
+    .stack-cards-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* extra padding so translated cards don't clip */
+      padding: 40px 60px 20px 20px;
+    }
+
+    .stack-cards {
+      display: grid;
+      grid-template-areas: 'stack';
+      place-items: center;
+    }
+
+    /* ── Base card ── */
+    .dcard {
+      grid-area: stack;
+      position: relative;
+      width: 350px;
+      height: 158px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(245,245,247,0.05);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      /* The signature skew */
+      transform: skewY(-6deg);
+      /* smooth hover nudge only — no lift, matching original component */
+      transition: transform 0.7s cubic-bezier(0.4,0,0.2,1),
+                  border-color 0.5s ease,
+                  box-shadow 0.5s ease,
+                  filter 0.6s ease;
+      cursor: default;
+      user-select: none;
+      overflow: visible;
+    }
+
+    /* ── Gradient fade on right edge (original component's ::after) ── */
+    .dcard::after {
+      content: '';
+      position: absolute;
+      top: -5%;
+      right: -1px;
+      width: 45%;
+      height: 110%;
+      background: linear-gradient(to left, #000 0%, transparent 100%);
+      border-radius: 0 16px 16px 0;
+      pointer-events: none;
+    }
+
+    /* ── Dim overlay for back cards — covers whole card but title escapes via z-index ── */
+    .dcard::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: rgba(0,0,0,0.55);
+      mix-blend-mode: normal;
+      opacity: 1;
+      transition: opacity 0.6s ease;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* ── Card positions ──
+       Gap of 52px between cards exposes the title row (~46px tall) of the card below.
+       Lift = enough to clear the card in front completely. ── */
+
+    /* Card 1: back */
+    .dcard-1 {
+      transform: skewY(-6deg) translateX(0px) translateY(0px);
+      z-index: 1;
+      box-shadow: none;
+      border-color: var(--border);
+    }
+    .dcard-1.active {
+      transform: skewY(-6deg) translateX(0px) translateY(-85px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .dcard-1.active::before { opacity: 0; }
+
+    /* Card 2: middle */
+    .dcard-2 {
+      transform: skewY(-6deg) translateX(40px) translateY(52px);
+      z-index: 2;
+      box-shadow: none;
+      border-color: var(--border);
+    }
+    .dcard-2.active {
+      transform: skewY(-6deg) translateX(40px) translateY(-34px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .dcard-2.active::before { opacity: 0; }
+
+    /* Card 3: front — no dim overlay */
+    .dcard-3 {
+      transform: skewY(-6deg) translateX(80px) translateY(104px);
+      z-index: 3;
+      box-shadow: none;
+      border-color: var(--border);
+    }
+    .dcard-3::before { display: none; }
+    .dcard-3.active {
+      transform: skewY(-6deg) translateX(80px) translateY(74px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    /* ── Card internals ── */
+    .dcard-icon-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255,107,0,0.15);
+      color: var(--accent);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 5;
+    }
+    .dcard-top   { display: flex; align-items: center; gap: 10px; position: relative; z-index: 4; }
+    .dcard-title { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; position: relative; z-index: 5; }
+    .dcard-desc  { font-size: 13px; color: var(--text-secondary); line-height: 1.5; letter-spacing: -0.01em; position: relative; z-index: 4; }
+    .dcard-meta  { font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.05em; text-transform: uppercase; position: relative; z-index: 4; }
+
+    /* ─── FAQ ─── */
+    .faq {
+      padding: 125px 25px;
+    }
+
+    .faq-container {
+      max-width: 666px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .faq-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .faq-question {
+      padding: 23px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+      transition: color 0.2s var(--ease);
+      background: none;
+    }
+
+    .faq-question:hover {
+      color: var(--accent);
+    }
+
+    .faq-question svg {
+      width: 19px;
+      height: 19px;
+      flex-shrink: 0;
+      transition: transform 0.3s var(--ease);
+      color: var(--text-tertiary);
+    }
+
+    .faq-item.active .faq-question svg {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      padding: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.35s var(--ease-out);
+      color: var(--text-secondary);
+      font-size: 16px;
+      line-height: 1.6;
+      letter-spacing: -0.005em;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 0 0 23px;
+      max-height: 312px;
+    }
+
+    /* ─── CTA ─── */
+    .cta {
+      padding: 146px 25px;
+      position: relative;
+      overflow: visible;
+      text-align: center;
+    }
+
+    .cta-orb {
+      position: absolute;
+      width: 728px;
+      height: 728px;
+      background: var(--accent);
+      border-radius: 50%;
+      filter: blur(166px);
+      opacity: 0.15;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 10;
+      max-width: 894px;
+      margin: 0 auto;
+    }
+
+    .cta h2 {
+      margin-bottom: 21px;
+    }
+
+    .cta-desc {
+      color: var(--text-secondary);
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 54px;
+      letter-spacing: -0.01em;
+      line-height: 1.55;
+      max-width: 582px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 17px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(245, 245, 247, 0.2);
+      color: var(--text);
+      padding: 15px 29px;
+      border-radius: 1019px;
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s var(--ease);
+      letter-spacing: -0.01em;
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface-hover);
+    }
+
+    .trust-pills {
+      display: flex;
+      gap: 33px;
+      justify-content: center;
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+
+    .trust-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--text-tertiary);
+    }
+
+    .trust-pill::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .cal-embed-wrap {
+      margin-top: 54px;
+      height: 680px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cal-embed-wrap > div {
+      height: 100%;
+      overflow: scroll;
+    }
+
+    .cal-or-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 40px auto 16px;
+      max-width: 320px;
+    }
+
+    .cal-or-divider::before,
+    .cal-or-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .cal-or-divider span {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .cal-or-text {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 0;
+      letter-spacing: -0.01em;
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      padding: 42px 25px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-content {
+      max-width: 1123px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 21px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 29px;
+      align-items: center;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      transition: color 0.2s var(--ease);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    .copyright {
+      color: var(--text-tertiary);
+      font-size: 12px;
+      letter-spacing: 0;
+    }
+
+    /* ─── Mobile Menu ─── */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      padding: 4px;
+      z-index: 1001;
+    }
+
+    .mobile-nav-drawer {
+      display: none;
+      position: fixed;
+      top: 84px;
+      left: 24px;
+      right: 24px;
+      max-width: 1050px;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.96);
+      backdrop-filter: saturate(180%) blur(21px);
+      -webkit-backdrop-filter: saturate(180%) blur(21px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      z-index: 999;
+      padding: 20px 25px 28px;
+      flex-direction: column;
+      gap: 4px;
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+    }
+
+    .mobile-nav-drawer.open {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-nav-drawer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 400;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s var(--ease);
+    }
+
+    .mobile-nav-drawer a:last-child {
+      border-bottom: none;
+      margin-top: 8px;
+      padding: 14px 0;
+      text-align: center;
+      background: var(--accent);
+      color: white;
+      border-radius: 1019px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .mobile-nav-drawer a:hover { color: var(--text); }
+    .mobile-nav-drawer a:last-child:hover { opacity: 0.88; color: white; }
+
+    /* ─── Liquid Glass Button ─── */
+    .btn-glass {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 32px;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: white;
+      border: 1px solid rgba(255, 107, 0, 0.5);
+      border-radius: 9999px;
+      background: var(--accent);
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+      overflow: visible;
+      box-shadow: none;
+    }
+
+    .btn-glass:hover {
+      opacity: 0.88;
+      transform: scale(0.98);
+    }
+
+    .btn-glass-shell {
+      display: none;
+    }
+
+    .btn-glass-backdrop {
+      display: none;
+    }
+
+    .btn-glass-label {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-glass svg {
+      transition: transform 0.25s var(--ease);
+    }
+
+    .btn-glass:hover svg {
+      transform: translateX(3px);
+    }
+
+    .service-icon {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .services-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+
+    /* ─── Sale / Countdown ─── */
+    .offer-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 14px 32px;
+      margin-bottom: 28px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 107, 0, 0.35);
+      background: rgba(255, 107, 0, 0.07);
+    }
+
+    .offer-ring {
+      position: relative;
+      width: 10px;
+      height: 10px;
+      flex-shrink: 0;
+    }
+
+    .offer-ring::before,
+    .offer-ring::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .offer-ring::before {
+      inset: 0;
+      background: var(--accent);
+      animation: ring-core 1.8s ease-in-out infinite;
+    }
+
+    .offer-ring::after {
+      inset: -5px;
+      border: 2px solid var(--accent);
+      animation: ring-expand 1.8s ease-in-out infinite;
+    }
+
+    @keyframes ring-core {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(0.75); opacity: 0.6; }
+    }
+
+    @keyframes ring-expand {
+      0% { transform: scale(0.3); opacity: 0.8; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+
+    .offer-bar-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .price-was {
+      font-size: 22px;
+      font-weight: 600;
+      color: rgba(245,245,247,0.35);
+      text-decoration: line-through;
+      text-decoration-color: rgba(255,107,0,0.7);
+      text-decoration-thickness: 2px;
+      letter-spacing: -0.03em;
+    }
+
+    .price-save {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(255,107,0,0.1);
+      border: 0.5px solid rgba(255,107,0,0.25);
+      border-radius: 20px;
+      padding: 3px 9px;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    /* ─── Pricing section ─── */
+    .pricing {
+      padding: 125px 25px;
+    }
+    .pricing-inner {
+      max-width: 1123px;
+      margin: 0 auto;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 64px;
+    }
+    @media (max-width: 799px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing { padding: 80px 20px; }
+    }
+    .pricing-card {
+      background: rgba(245,245,247,0.03);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 33px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+    }
+    .pricing-card:hover {
+      background: rgba(245,245,247,0.05);
+    }
+    .pricing-card.featured {
+      border-color: rgba(255,107,0,0.35);
+      background: rgba(255,107,0,0.04);
+    }
+    .pricing-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .pricing-name {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .pricing-price {
+      font-size: clamp(38px, 5vw, 52px);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      color: var(--text);
+      line-height: 1;
+      margin: 12px 0;
+    }
+    .pricing-price sup {
+      font-size: 22px;
+      vertical-align: super;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .pricing-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 20px;
+    }
+    .pricing-divider {
+      border: none;
+      border-top: 0.5px solid var(--border);
+      margin: 16px 0;
+    }
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+      margin-bottom: 24px;
+    }
+    .pricing-features li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.45;
+    }
+    .pricing-features li .check {
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .pricing-cta {
+      display: block;
+      text-align: center;
+      padding: 13px 20px;
+      border-radius: 1019px;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s var(--ease);
+      letter-spacing: -0.01em;
+      margin-top: auto;
+    }
+    .pricing-cta-outline {
+      border: 1px solid rgba(245,245,247,0.18);
+      color: var(--text);
+    }
+    .pricing-cta-outline:hover { background: var(--surface-hover); }
+    .pricing-cta-solid {
+      background: var(--accent);
+      color: white;
+      box-shadow: none;
+    }
+    .pricing-cta-solid:hover { opacity: 0.88; transform: scale(0.98); }
+
+    @media (max-width: 799px) {
+      /* ─── Nav ─── */
+      nav {
+        top: 10px;
+        width: calc(100% - 24px);
+        border-radius: 9999px;
+      }
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: block; }
+      .mobile-nav-drawer {
+        display: flex;
+        top: 72px;
+        left: 12px;
+        right: 12px;
+        border-radius: 20px;
+      }
+
+      /* ─── Hero ─── */
+      .hero { min-height: 100svh; padding-top: 72px; }
+      .hero-content { padding: 0 20px; }
+      h1 { font-size: clamp(26px, 7vw, 48px); white-space: normal; }
+      .hero-h1-sub { font-size: clamp(18px, 5vw, 32px); }
+      .hero-subtitle { font-size: 15px; max-width: 100%; }
+      .trust-badge { margin-bottom: 18px; }
+      .hero-stats {
+        gap: 0;
+        margin-top: 40px;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        width: 100%;
+      }
+      .stat-item { flex: 1; }
+      .stat-number { font-size: 24px; }
+      .stat-label { font-size: 10px; }
+
+      /* ─── Portfolio ─── */
+      .portfolio { padding: 60px 0; }
+      .section-header { margin-bottom: 36px; padding: 0 20px; }
+      .section-subtitle { font-size: 15px; }
+      .portfolio-card { width: 280px; }
+      .portfolio-card img { width: 280px; height: 158px; }
+
+      /* ─── Services ─── */
+      .results { padding: 60px 20px; }
+      .results-grid { grid-template-columns: 1fr; gap: 36px; }
+      .results-headline { font-size: clamp(26px, 7vw, 40px); margin-bottom: 32px; }
+      .service-item {
+        grid-template-columns: 24px 1fr;
+        gap: 12px;
+        padding: 16px 0;
+      }
+      .case-study-card { padding: 20px 16px; border-radius: var(--radius-lg); }
+      .case-stats { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+      .case-stat-value { font-size: 20px; }
+      .case-stat { padding: 14px 10px; }
+      .pkg-features { grid-template-columns: repeat(2, 1fr); gap: 4px; }
+
+      /* ─── Proof / Stats ─── */
+      .proof-section { padding: 60px 20px; }
+      .proof-grid { grid-template-columns: 1fr; gap: 8px; }
+      .proof-cell { padding: 24px 20px; }
+      .proof-big { font-size: clamp(32px, 9vw, 48px); }
+
+      /* ─── Who We Work With ─── */
+      .stack-section { padding: 60px 20px; }
+      .ww-layout { grid-template-columns: 1fr; gap: 48px; }
+      .ww-copy h2 { text-align: center; }
+      .ww-copy p { text-align: center; }
+      .proof-section-label { text-align: center !important; }
+      .stack-cards-wrap {
+        padding: 20px 20px 100px 20px;
+        width: 100%;
+      }
+      .dcard {
+        width: 280px;
+        height: 140px;
+      }
+      .dcard-2 {
+        transform: skewY(-6deg) translateX(30px) translateY(44px);
+      }
+      .dcard-3 {
+        transform: skewY(-6deg) translateX(60px) translateY(88px);
+      }
+      .dcard-1.active {
+        transform: skewY(-6deg) translateX(0px) translateY(-75px);
+      }
+      .dcard-2.active {
+        transform: skewY(-6deg) translateX(30px) translateY(-26px);
+      }
+      .dcard-3.active {
+        transform: skewY(-6deg) translateX(60px) translateY(60px);
+      }
+
+      /* ─── Pricing ─── */
+      .pricing { padding: 60px 20px; }
+      .pricing-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 40px; }
+      .pricing-card { padding: 24px 20px; }
+      .pricing-price { font-size: clamp(36px, 10vw, 52px); }
+
+
+      /* ─── FAQ ─── */
+      .faq { padding: 60px 20px; }
+      .faq-question { font-size: 15px; padding: 18px 0; }
+      .faq-answer { font-size: 14px; }
+
+      /* ─── CTA ─── */
+      .cta { padding: 60px 20px 50px; }
+      .cta-desc { font-size: 16px; margin-bottom: 28px; }
+      .cta-orb { width: 300px; height: 300px; }
+      .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .cta-buttons .btn-primary {
+        justify-content: center;
+        width: 100%;
+      }
+      .btn-large { padding: 14px 24px; font-size: 15px; }
+      .cal-embed-wrap {
+        height: 580px;
+        margin-top: 32px;
+      }
+      .cal-or-divider { margin: 28px auto 12px; }
+
+      /* ─── Footer ─── */
+      footer { padding: 32px 20px; }
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+      }
+
+      .scroll-indicator { display: none; }
+    }
+
+    /* ─── Very small screens ─── */
+    @media (max-width: 400px) {
+      h1 { font-size: clamp(22px, 6.5vw, 32px); }
+      .hero-h1-sub { font-size: clamp(16px, 5vw, 24px); }
+      .hero-stats { gap: 0; }
+      .stat-number { font-size: 20px; }
+      .dcard { width: 240px; height: 130px; }
+      .dcard-2 { transform: skewY(-6deg) translateX(24px) translateY(40px); }
+      .dcard-3 { transform: skewY(-6deg) translateX(48px) translateY(80px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SVG filter for glass button -->
+  <svg style="position:absolute;width:0;height:0;" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="glass-filter" x="-50%" y="-50%" width="200%" height="200%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="logo"><img src="data:image/png;base64,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iRtj4vO4a+7Skhz7kHy/7/vx+IfW1ta4Wdx9TjeQ0b3eFe7c7lpK5evmeZ722GOP9f6e7ah1dof29vZ4jEpbW1tFF5RjjFnnteR9UT3WxForY0zcXRWGYXxf1Gr8i+OuUxAE8n1fDQ0NOvzww9XZCoPo2wjovdjuu+/e5WNkMhl5nlfRl+mabe+///4uH1+SbrjhBrP//vubT3/603r00UdljFEul1OxWNTNN99ck3NsqVwupzAM44w6k8motbU1ni1grY2brRcsWKCHHnpI559/vg477DCZDqNGjdIhhxyiz3/+87rjjju0cOHCOJN2n9MFyOR0Mhck6i2fz8dp8TxPb7/9tq6//nqdeOKJGjdunFKplDHGmOHDh+szn/mMLrnkEv3ud7/TBx98oKampjjtxhi1tLTEn2NTFw7aEHffJQtC7rUDDzywy8evhXw+H3/uxsbG+HO78SS+71dM0XTTNt17qseduIJzFEXx9E/3+21tbTUt8CXHVXieF9/LQ4YM0X/+5392+fgAasRt6Vir5rjkuuVhGNoTTzyxLiX4fffd1/7sZz+zt95662Ydv55rubvPn3zNNYEuWrTIXnrppZuV1hNOOMHOmDGj06bTznbnqhe3WUehULBvvPGG/fznP79Zn+Pcc8+18+fPX6eboJbpT3ZHJP9esGBBr2hyT54neb9Yu7YLplgs2mnTptmpU6fa73znO/aCCy6wJ598sj333HPthRdeaK+55hr7xz/+0S5dujQ+ltugyO2m576rem3u4rgdDa21dp999qGWDvQG7777bpcf7s42o3CvnX322b3qYa9HQE8GpuSe7C7jfe211+zo0aO3+DpcfvnlnfZHJ/ve661YLNrf/e53Xfoun3rqqXWuUa101jcfBIEtFArrTXMtNj7ZFMnvKVk4czvfvfLKK3ZzF2w59NBD7d13322bm5srzpUsNHW2s9qWShZ+khvyFIvFzS5UA6iTWgT0akEQxAOA7r///l71sNdz6VdXO0oG2WnTptldd921y9fgwgsvjGthyb3Nu2N51lKpVLPv8b777rPW1n5gX/WyxUnDhw/vNO3J61hP1d+RK9DMmTPHTp48ucvX9ZZbbrFRFFXcf+6ctSq0JHcUTD47pVLJrlixolc948A267XXXuvyw+72Uu5sv+rm5uYNjjTubvUI6C7TdAHKbTlaKpXs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" alt="SMB" style="height:50px;width:auto;display:block;"></a>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="btn-primary">Contact Us</a>
+      </div>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+        <svg id="menu-icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <svg id="menu-icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-mesh">
+      <canvas id="mesh-canvas"></canvas>
+      <div class="hero-fade-top"></div>
+      <div class="hero-fade"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="trust-badge">
+        <div class="dot"></div>
+        <span>Now taking on new projects</span>
+      </div>
+
+      <h1>First impressions happen online.</h1>
+      <p class="hero-h1-sub"><span class="gradient-text">Make yours count.</span></p>
+
+      <p class="hero-subtitle">
+        Fast, sharp websites for local businesses and freelancers. Built to get you found, earn trust, and turn visitors into customers.
+      </p>
+
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number">30+</div>
+          <div class="stat-label">Sites Delivered</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">7 days</div>
+          <div class="stat-label">Avg. Launch Time</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Mobile-Ready</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(245,245,247,0.3)" stroke-width="1.5">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Portfolio Marquee -->
+  <section class="portfolio" id="work">
+    <div class="section-header">
+      <h2>Built for <span class="gradient-text">Real Businesses</span></h2>
+      <p class="section-subtitle">From restaurants and boutiques to salons and service businesses — here's a taste of recent work.</p>
+    </div>
+
+    <div class="marquee-outer">
+      <div class="marquee-wrapper">
+        <div class="marquee-track">
+          <!-- First set -->
+          <div class="portfolio-card">
+            <img src="sorbetto.png" alt="Il Sorbetto di Nonno Nino">
+          </div>
+          <div class="portfolio-card">
+            <img src="sushiway.png" alt="Sushiway Ristorante">
+          </div>
+          <div class="portfolio-card">
+            <img src="mommatried.png" alt="Momma Tried Tattoo Studio">
+          </div>
+          <div class="portfolio-card">
+            <img src="eugenio.png" alt="Eugenio Barbaro Violinista">
+          </div>
+          <!-- Duplicate for seamless loop -->
+          <div class="portfolio-card">
+            <img src="sorbetto.png" alt="Il Sorbetto di Nonno Nino">
+          </div>
+          <div class="portfolio-card">
+            <img src="sushiway.png" alt="Sushiway Ristorante">
+          </div>
+          <div class="portfolio-card">
+            <img src="mommatried.png" alt="Momma Tried Tattoo Studio">
+          </div>
+          <div class="portfolio-card">
+            <img src="eugenio.png" alt="Eugenio Barbaro Violinista">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="results" id="services">
+    <div style="max-width: 1123px; margin: 0 auto; padding: 0 25px;">
+
+      <!-- Header -->
+      <div style="text-align: center; margin-bottom: 58px;">
+        <h2>Everything your <span class="gradient-text">new site needs</span></h2>
+        <p class="section-subtitle" style="margin-top: 17px; max-width: 580px; margin-left: auto; margin-right: auto;">We handle the whole process — from first conversation to launch day. No tech headaches for you.</p>
+      </div>
+
+      <!-- Main layout -->
+      <div class="results-grid" style="align-items: stretch;">
+
+        <!-- Left: narrative + services -->
+        <div style="display: flex; flex-direction: column;">
+          <div style="margin-bottom: 33px;">
+            <div style="font-size: 11px; letter-spacing: 0.12em; color: #FF6B00; text-transform: uppercase; font-weight: 700; margin-bottom: 15px;">How It Works</div>
+            <p style="font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.65); margin: 0;">Most local businesses are invisible online — or have a site that looks outdated and loads slowly. We fix that. Starting with a call to understand your business, we design and build a fast, modern site tailored to your customers. You get a site that ranks on Google, looks great on every device, and actually turns visitors into leads.</p>
+          </div>
+
+          <div class="services-list">
+            <div class="service-item">
+              <div class="service-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <path d="M3 9h18M9 21V9"/>
+                </svg>
+              </div>
+              <div>
+                <div class="service-title">Custom Design</div>
+                <div class="service-desc">No generic templates. Every site is designed from scratch to match your brand and speak to your customers.</div>
+              </div>
+            </div>
+            <div class="service-item">
+              <div class="service-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"/>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+              </div>
+              <div>
+                <div class="service-title">SEO & Google Visibility</div>
+                <div class="service-desc">Built-in on-page SEO so your business shows up when local customers search for what you offer.</div>
+              </div>
+            </div>
+            <div class="service-item">
+              <div class="service-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="5" y="2" width="14" height="20" rx="2"/>
+                  <line x1="12" y1="18" x2="12" y2="18" stroke-linecap="round" stroke-width="3"/>
+                </svg>
+              </div>
+              <div>
+                <div class="service-title">Mobile-First</div>
+                <div class="service-desc">Over 70% of customers browse on their phones. Every site we build looks and performs perfectly on all screen sizes.</div>
+              </div>
+            </div>
+            <div class="service-item">
+              <div class="service-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="service-title">Fast Load Speed</div>
+                <div class="service-desc">Clean, optimised code. No bloated plugins. Sites that load in under 2 seconds — because slow sites lose customers.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: package highlight card -->
+        <div class="case-study-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div class="case-header">
+            <div class="case-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="case-name">Most Popular Package</div>
+              <div class="case-type">Full Business Website · 5–7 pages</div>
+            </div>
+          </div>
+
+          <div class="case-stats">
+            <div class="case-stat">
+              <div class="case-stat-value">7</div>
+              <div class="case-stat-label">Days to Launch</div>
+            </div>
+            <div class="case-stat">
+              <div class="case-stat-value">100%</div>
+              <div class="case-stat-label">Mobile Ready</div>
+            </div>
+            <div class="case-stat">
+              <div class="case-stat-value">SEO</div>
+              <div class="case-stat-label">Built-In</div>
+            </div>
+            <div class="case-stat">
+              <div class="case-stat-value">∞</div>
+              <div class="case-stat-label">Revisions</div>
+            </div>
+          </div>
+
+          <div class="pkg-features">
+            <div class="pkg-feature highlight">
+              <svg class="pkg-feature-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="pkg-feature-text">Custom domain setup</span>
+            </div>
+            <div class="pkg-feature highlight">
+              <svg class="pkg-feature-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="pkg-feature-text">Google Business integration</span>
+            </div>
+            <div class="pkg-feature">
+              <svg class="pkg-feature-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="pkg-feature-text">Contact & booking forms</span>
+            </div>
+            <div class="pkg-feature">
+              <svg class="pkg-feature-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="pkg-feature-text">Photo gallery</span>
+            </div>
+            <div class="pkg-feature">
+              <svg class="pkg-feature-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="pkg-feature-text">SSL certificate (HTTPS)</span>
+            </div>
+            <div class="pkg-feature">
+              <svg class="pkg-feature-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="pkg-feature-text">Speed optimised</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing" id="pricing">
+    <div class="pricing-inner">
+      <div class="section-header">
+        <h2>Simple, Honest <span class="gradient-text">Pricing</span></h2>
+        <p class="section-subtitle"></p>
+      </div>
+
+      <!-- Offer bar -->
+      <div class="offer-bar">
+        <span class="offer-ring"></span>
+        <span class="offer-bar-text">Offer Ending Soon</span>
+      </div>
+
+      <div class="pricing-grid">
+
+        <!-- Starter -->
+        <div class="pricing-card">
+          <div class="pricing-tag">Starter</div>
+          <div class="pricing-name">Landing Page</div>
+          <div class="price-row"><span class="price-was">€499</span><span class="price-save">Saving €200</span></div>
+          <div class="pricing-price"><sup>€</sup>299</div>
+          <p class="pricing-desc">Ideal for freelancers, creatives, and anyone who needs a clean online presence — a sharp single page that shows who you are and gets you hired.</p>
+          <hr class="pricing-divider">
+          <ul class="pricing-features">
+            <li><span class="check">✦</span> 1-page custom design</li>
+            <li><span class="check">✦</span> Mobile responsive</li>
+            <li><span class="check">✦</span> Contact form</li>
+            <li><span class="check">✦</span> Basic on-page SEO</li>
+            <li><span class="check">✦</span> Delivered in 3–5 days</li>
+          </ul>
+          <a href="#contact" class="pricing-cta pricing-cta-outline">Get Started</a>
+        </div>
+
+        <!-- Most Popular -->
+        <div class="pricing-card featured">
+          <div class="pricing-tag">Most Popular</div>
+          <div class="pricing-name">Business Website</div>
+          <div class="price-row"><span class="price-was">€1,099</span><span class="price-save">Saving €400</span></div>
+          <div class="pricing-price"><sup>€</sup>699</div>
+          <p class="pricing-desc">Built for local businesses that want to be found online. A full site that builds credibility, ranks on Google, and turns visitors into paying customers.</p>
+          <hr class="pricing-divider">
+          <ul class="pricing-features">
+            <li><span class="check">✦</span> 5–7 custom pages</li>
+            <li><span class="check">✦</span> Full mobile design</li>
+            <li><span class="check">✦</span> SEO setup + Google Maps</li>
+            <li><span class="check">✦</span> Contact & booking forms</li>
+            <li><span class="check">✦</span> Photo gallery</li>
+            <li><span class="check">✦</span> Domain + SSL setup</li>
+            <li><span class="check">✦</span> Delivered in 7 days</li>
+          </ul>
+          <a href="#contact" class="pricing-cta pricing-cta-solid">Get Started</a>
+        </div>
+
+        <!-- Premium -->
+        <div class="pricing-card">
+          <div class="pricing-tag">Premium</div>
+          <div class="pricing-name">Growth Package</div>
+          <div class="price-row"><span class="price-was">€1,899</span><span class="price-save">Saving €600</span></div>
+          <div class="pricing-price"><sup>€</sup>1,299</div>
+          <p class="pricing-desc">For established businesses that want to stay ahead. Ongoing management, SEO, and monthly updates so your site keeps working as your business scales.</p>
+          <hr class="pricing-divider">
+          <ul class="pricing-features">
+            <li><span class="check">✦</span> Everything in Business</li>
+            <li><span class="check">✦</span> Blog / news section</li>
+            <li><span class="check">✦</span> Monthly content updates</li>
+            <li><span class="check">✦</span> Ongoing SEO monitoring</li>
+            <li><span class="check">✦</span> Priority support</li>
+            <li><span class="check">✦</span> Performance reports</li>
+          </ul>
+          <a href="#contact" class="pricing-cta pricing-cta-outline">Get Started</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Who We Work With -->
+  <section class="stack-section">
+    <div class="stack-inner">
+      <div class="ww-layout">
+
+        <!-- Left: copy -->
+        <div class="ww-copy">
+          <div class="proof-section-label" style="text-align:left; margin-bottom:16px;">Who We Work With</div>
+          <h2>Built for businesses <span class="gradient-text">ready to grow</span></h2>
+          <p>We work with all kinds of businesses — from freelancers who need a sharp first impression, to local shops that want to be found on Google, to growing brands that need a reliable team behind them.</p>
+        </div>
+
+        <!-- Right: stacked cards — interaction driven entirely by JS, no CSS hover -->
+        <div class="stack-cards-wrap">
+          <div class="stack-cards" id="sc-wrap">
+
+            <div class="dcard dcard-1 is-dim" data-idx="0">
+              <div class="dcard-top">
+                <div class="dcard-icon-wrap">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <span class="dcard-title">Local first.</span>
+              </div>
+              <p class="dcard-desc">Restaurants, cafés, salons, gyms, boutiques, clinics, tradespeople — if you serve local customers, we're built for you.</p>
+            </div>
+
+            <div class="dcard dcard-2 is-dim" data-idx="1">
+              <div class="dcard-top">
+                <div class="dcard-icon-wrap">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <span class="dcard-title">7 days.</span>
+              </div>
+              <p class="dcard-desc">Most projects go live in a week. Fast turnaround without any compromise on quality or attention to detail.</p>
+            </div>
+
+            <div class="dcard dcard-3" data-idx="2">
+              <div class="dcard-top">
+                <div class="dcard-icon-wrap">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                </div>
+                <span class="dcard-title">We host it.</span>
+              </div>
+              <p class="dcard-desc">We handle hosting so you don't have to think about it — or we hand the keys over to you if you prefer full control.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq" id="faq">
+    <div class="section-header">
+      <h2>Frequently Asked <span class="gradient-text">Questions</span></h2>
+      <p class="section-subtitle">Everything you need to know before we get started.</p>
+    </div>
+    
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          What kind of businesses do you work with?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </div>
+        <div class="faq-answer">
+          We work with all kinds of local businesses — restaurants, cafés, salons, gyms, boutiques, dental clinics, plumbers, photographers, and more. If you serve customers in your area and need a professional online presence, we can help.
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          How long does it take to build my website?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </div>
+        <div class="faq-answer">
+          Landing pages are typically ready in 3–5 days. Full business websites launch in about 7 days. E-commerce stores take 10–14 days depending on the number of products. The timeline starts once you've provided your content (text, photos, logo).
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Do I need to provide photos and text?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </div>
+        <div class="faq-answer">
+          Ideally yes — your own photos and words always make a site feel more authentic. But if you don't have them, we can source high-quality stock photos and write the copy for you — just let us know and we'll sort it out together.
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Will my site show up on Google?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </div>
+        <div class="faq-answer">
+          Every site we build includes on-page SEO setup — proper headings, meta tags, fast load speed, and Google Business integration. This gives you a solid foundation to rank locally. SEO takes time, but you'll be starting in the right position from day one.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          What happens after the site goes live?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </div>
+        <div class="faq-answer">
+          You own the site completely. We'll walk you through how to make basic updates yourself. If you need ongoing changes or maintenance, we offer flexible support packages — just get in touch.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta" id="contact">
+    <div class="cta-orb"></div>
+    <div class="cta-content">
+      <h2>Let's build your <span class="gradient-text">website.</span></h2>
+      <p class="cta-desc">A few ways to get in touch.</p>
+
+      <div class="cta-buttons">
+        <!-- WhatsApp -->
+        <a href="https://wa.me/393519553313" class="btn-primary btn-large" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.861L.057 23.927l6.266-1.641A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.853 0-3.587-.5-5.084-1.373l-.361-.214-3.741.981.998-3.648-.235-.374A9.94 9.94 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+          </svg>
+          WhatsApp
+        </a>
+        <!-- Call -->
+        <a href="tel:+393519553313" class="btn-primary btn-large">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.7A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+          Call Us
+        </a>
+        <!-- Email -->
+        <a href="/cdn-cgi/l/email-protection#305c554846445c70575d51595c1e535f5d" class="btn-primary btn-large">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          Email Us
+        </a>
+      </div>
+
+      <div class="cal-or-divider">
+        <span>or</span>
+      </div>
+      <p class="cal-or-text">Book a free 15-minute intro call — pick a time that works for you.</p>
+
+      <!-- Cal.com embed -->
+      <div class="cal-embed-wrap">
+        <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-15min"></div>
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript">
+          (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+          Cal("init", "15min", {origin:"https://app.cal.com"});
+          Cal.ns["15min"]("inline", {
+            elementOrSelector:"#my-cal-inline-15min",
+            config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"dark"},
+            calLink: "smb-intro/15min",
+          });
+          Cal.ns["15min"]("ui", {"theme":"dark","cssVarsPerTheme":{"light":{"cal-brand":"#FF6B00"},"dark":{"cal-brand":"#FF6B00"}},"hideEventTypeDetails":false,"layout":"month_view"});
+        </script>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <a href="#" class="logo"><img src="data:image/png;base64,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iRtj4vO4a+7Skhz7kHy/7/vx+IfW1ta4Wdx9TjeQ0b3eFe7c7lpK5evmeZ722GOP9f6e7ah1dof29vZ4jEpbW1tFF5RjjFnnteR9UT3WxForY0zcXRWGYXxf1Gr8i+OuUxAE8n1fDQ0NOvzww9XZCoPo2wjovdjuu+/e5WNkMhl5nlfRl+mabe+///4uH1+SbrjhBrP//vubT3/603r00UdljFEul1OxWNTNN99ck3NsqVwupzAM44w6k8motbU1ni1grY2brRcsWKCHHnpI559/vg477DCZDqNGjdIhhxyiz3/+87rjjju0cOHCOJN2n9MFyOR0Mhck6i2fz8dp8TxPb7/9tq6//nqdeOKJGjdunFKplDHGmOHDh+szn/mMLrnkEv3ud7/TBx98oKampjjtxhi1tLTEn2NTFw7aEHffJQtC7rUDDzywy8evhXw+H3/uxsbG+HO78SS+71dM0XTTNt17qseduIJzFEXx9E/3+21tbTUt8CXHVXieF9/LQ4YM0X/+5392+fgAasRt6Vir5rjkuuVhGNoTTzyxLiX4fffd1/7sZz+zt95662Ydv55rubvPn3zNNYEuWrTIXnrppZuV1hNOOMHOmDGj06bTznbnqhe3WUehULBvvPGG/fznP79Zn+Pcc8+18+fPX6eboJbpT3ZHJP9esGBBr2hyT54neb9Yu7YLplgs2mnTptmpU6fa73znO/aCCy6wJ598sj333HPthRdeaK+55hr7xz/+0S5dujQ+ltugyO2m576rem3u4rgdDa21dp999qGWDvQG7777bpcf7s42o3CvnX322b3qYa9HQE8GpuSe7C7jfe211+zo0aO3+DpcfvnlnfZHJ/ve661YLNrf/e53Xfoun3rqqXWuUa101jcfBIEtFArrTXMtNj7ZFMnvKVk4czvfvfLKK3ZzF2w59NBD7d13322bm5srzpUsNHW2s9qWShZ+khvyFIvFzS5UA6iTWgT0akEQxAOA7r///l71sNdz6VdXO0oG2WnTptldd921y9fgwgsvjGthyb3Nu2N51lKpVLPv8b777rPW1n5gX/WyxUnDhw/vNO3J61hP1d+RK9DMmTPHTp48ucvX9ZZbbrFRFFXcf+6ctSq0JHcUTD47pVLJrlixolc948A267XXXuvyw+72Uu5sv+rm5uYNjjTubvUI6C7TdAHKbTlaKpXs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" alt="SMB" style="height:50px;width:auto;display:block;"></a>
+
+      <div class="footer-links">
+        <a href="https://www.instagram.com/smb.seo" target="_blank" style="display:flex;align-items:center;gap:8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+          @smb.seo
+        </a>
+      </div>
+
+      <div class="copyright">© 2026 SMB.</div>
+    </div>
+  </footer>
+
+  <script>
+  // ─── i18n: IP geolocation → Italian/EUR or English/USD ───
+  (function() {
+    const translations = {
+      it: {
+        "nav-work": "Portfolio",
+        "nav-services": "Servizi",
+        "nav-pricing": "Prezzi",
+        "nav-faq": "FAQ",
+        "nav-cta": "Contattaci",
+        "mobile-nav-cta": "Contattaci",
+        "trust-badge": "Accettiamo nuovi clienti",
+        "hero-h1": "La prima impressione conta. Anche online.",
+        "hero-h1-sub": "<span class=\"gradient-text\">Fai in modo che sia quella giusta.</span>",
+        "hero-subtitle": "Siti web veloci e professionali per attività locali e freelance. Fatti per farti trovare, creare fiducia e portare clienti.",
+        "hero-cta": "Contattaci",
+        "stat-1-label": "Siti Realizzati",
+        "stat-2-num": "7 giorni",
+        "stat-2-label": "Tempo Medio di Consegna",
+        "stat-3-label": "Ottimizzati Mobile",
+        "portfolio-h2": "Realizzato per <span class=\"gradient-text\">chi lavora sul serio</span>",
+        "portfolio-subtitle": "Ristoranti, boutique, saloni, studi professionali — qualche esempio di progetti recenti.",
+        "services-h2": "Tutto quello che serve al tuo <span class=\"gradient-text\">nuovo sito</span>",
+        "services-subtitle": "Ci occupiamo di tutto, dalla prima chiacchierata al giorno del lancio. A te non serve sapere nulla di tecnico.",
+        "services-how-label": "Come Funziona",
+        "services-narrative": "La maggior parte delle attività locali non si trova online — o ha un sito che fa più danni che altro. Noi partiamo da una chiamata per capire la tua attività, poi progettiamo e costruiamo qualcosa di veloce, moderno e su misura. Il risultato: un sito che si posiziona su Google, funziona su qualsiasi dispositivo e trasforma le visite in contatti reali.",
+        "svc-1-title": "Design su Misura",
+        "svc-1-desc": "Niente template. Ogni sito viene progettato da zero per rispecchiare il tuo brand e parlare ai tuoi clienti.",
+        "svc-2-title": "SEO e Visibilità su Google",
+        "svc-2-desc": "Ottimizzazione on-page integrata, così la tua attività appare quando qualcuno nella tua zona cerca quello che offri.",
+        "svc-3-title": "Pensato per il Mobile",
+        "svc-3-desc": "Più del 70% delle persone naviga da smartphone. Ogni sito che realizziamo funziona perfettamente su qualsiasi schermo.",
+        "svc-4-title": "Caricamento Veloce",
+        "svc-4-desc": "Codice pulito, nessun plugin inutile. Siti che si aprono in meno di 2 secondi — perché chi aspetta, se ne va.",
+        "case-name": "Il Pacchetto Più Scelto",
+        "case-type": "Sito Business Completo · 5–7 pagine",
+        "case-days-label": "Giorni alla Pubblicazione",
+        "case-mobile-label": "Ottimizzato Mobile",
+        "case-seo-label": "SEO Inclusa",
+        "case-rev-label": "Revisioni",
+        "feat-1": "Dominio personalizzato incluso",
+        "feat-2": "Scheda Google Business",
+        "feat-3": "Moduli contatto e prenotazioni",
+        "feat-4": "Galleria fotografica",
+        "feat-5": "Certificato SSL (HTTPS)",
+        "feat-6": "Velocità ottimizzata",
+        "pricing-h2": "Prezzi <span class=\"gradient-text\">chiari e trasparenti</span>",
+        "pricing-subtitle": "",
+        "sale-text": "Prezzi di lancio — <strong>non dureranno a lungo.</strong> L'offerta scade tra",
+        "cd-days-label": "Giorni",
+        "cd-hrs-label": "Ore",
+        "cd-min-label": "Min",
+        "cd-sec-label": "Sec",
+        "plan-1-tag": "Base",
+        "plan-1-name": "Landing Page",
+        "plan-1-was": "€499",
+        "plan-1-save": "Risparmi €200",
+        "plan-1-price": "€299",
+        "plan-1-sup": "€",
+        "plan-1-num": "299",
+        "plan-1-desc": "Perfetta per freelance, creativi e professionisti che vogliono farsi trovare online — una pagina singola, curata, che dice chi sei e cosa fai.",
+        "plan-1-f1": "Design personalizzato su 1 pagina",
+        "plan-1-f2": "Versione mobile inclusa",
+        "plan-1-f3": "Modulo di contatto",
+        "plan-1-f4": "SEO di base",
+        "plan-1-f5": "Pronto in 3–5 giorni",
+        "plan-1-cta": "Inizia",
+        "plan-2-tag": "Più Scelto",
+        "plan-2-name": "Sito Business",
+        "plan-2-was": "€1.099",
+        "plan-2-save": "Risparmi €400",
+        "plan-2-price": "€699",
+        "plan-2-sup": "€",
+        "plan-2-num": "699",
+        "plan-2-desc": "Per le attività locali che vogliono farsi trovare e fare una buona impressione. Un sito completo che costruisce fiducia, si posiziona su Google e porta clienti.",
+        "plan-2-f1": "5–7 pagine personalizzate",
+        "plan-2-f2": "Versione mobile completa",
+        "plan-2-f3": "SEO + Google Maps",
+        "plan-2-f4": "Moduli contatto e prenotazioni",
+        "plan-2-f5": "Galleria fotografica",
+        "plan-2-f6": "Dominio + SSL inclusi",
+        "plan-2-f7": "Pronto in 7 giorni",
+        "plan-2-cta": "Inizia",
+        "plan-3-tag": "Premium",
+        "plan-3-name": "Pacchetto Crescita",
+        "plan-3-was": "€1.899",
+        "plan-3-save": "Risparmi €600",
+        "plan-3-price": "€1.299",
+        "plan-3-sup": "€",
+        "plan-3-num": "1.299",
+        "plan-3-desc": "Per chi vuole restare sempre aggiornato e crescere nel tempo. Gestione continua, aggiornamenti mensili e SEO costante — il tuo sito lavora per te anche quando non ci sei.",
+        "plan-3-f1": "Tutto del piano Business",
+        "plan-3-f2": "Blog o sezione news",
+        "plan-3-f3": "Aggiornamenti mensili",
+        "plan-3-f4": "SEO continuativa",
+        "plan-3-f5": "Supporto prioritario",
+        "plan-3-f6": "Report mensile",
+        "plan-3-cta": "Inizia",
+        "ww-label": "Con Chi Lavoriamo",
+        "ww-h2": "Per le attività che vogliono <span class=\"gradient-text\">fare sul serio</span>",
+        "ww-p": "Lavoriamo con ristoratori, professionisti, negozi di quartiere e freelance. Se hai clienti da raggiungere e vuoi che ti trovino online, siamo il team giusto.",
+        "dcard-1-title": "Attività locali.",
+        "dcard-1-desc": "Ristoranti, parrucchieri, palestre, boutique, studi medici, artigiani — se lavori con clienti locali, sappiamo come aiutarti.",
+        "dcard-2-title": "Consegnato in 7 giorni.",
+        "dcard-2-desc": "La maggior parte dei progetti è online in una settimana. Veloci, ma senza tagliare angoli.",
+        "dcard-3-title": "Ci pensiamo noi.",
+        "dcard-3-desc": "Gestiamo hosting e manutenzione al posto tuo — oppure ti consegniamo tutto se preferisci gestirlo in autonomia.",
+        "faq-h2": "Domande <span class=\"gradient-text\">Frequenti</span>",
+        "faq-subtitle": "Tutto quello che vuoi sapere prima di iniziare.",
+        "faq-1-q": "Con che tipo di attività lavorate?",
+        "faq-1-a": "Con qualsiasi attività locale — ristoranti, negozi, saloni, palestre, studi professionali, artigiani, fotografi e molto altro. Se hai clienti nella tua zona e vuoi una presenza online seria, possiamo aiutarti.",
+        "faq-2-q": "Quanto tempo ci vuole?",
+        "faq-2-a": "Una landing page è pronta in 3–5 giorni. Un sito business completo in circa 7 giorni. Un e-commerce richiede 10–14 giorni a seconda dei prodotti. I tempi partono da quando ci consegni i contenuti — testi, foto e logo.",
+        "faq-3-q": "Devo fornire foto e testi?",
+        "faq-3-a": "Sarebbe l'ideale — i tuoi contenuti rendono il sito più autentico. Ma se non li hai, ci pensiamo noi: foto stock di qualità e testi scritti su misura. Diccelo e troviamo la soluzione insieme.",
+        "faq-4-q": "Il mio sito si troverà su Google?",
+        "faq-4-a": "Ogni sito che realizziamo è ottimizzato per i motori di ricerca — struttura corretta, meta tag, velocità di caricamento e integrazione con Google Business. Non promettiamo la prima posizione dal giorno uno, ma partirai già con le basi giuste.",
+        "faq-5-q": "E dopo che il sito è online?",
+        "faq-5-a": "Il sito è tuo al 100%. Ti spieghiamo come fare le modifiche di base da solo. Se invece vuoi qualcuno che lo gestisca per te, abbiamo pacchetti di supporto flessibili — scrivici.",
+        "cta-h2": "Costruiamo insieme il tuo <span class=\"gradient-text\">sito web.</span>",
+        "cta-desc": "Come puoi contattarci.",
+        "cta-email": "Email",
+        "cta-whatsapp": "WhatsApp",
+        "cta-call": "Chiamaci",
+        "cta-or": "oppure",
+        "cta-cal-text": "Prenota una chiamata gratuita di 15 minuti — scegli il momento che preferisci.",
+        "trust-pill-1": "Preventivo gratuito, senza impegno",
+        "trust-pill-2": "Risposta entro 24 ore",
+        "footer-copy": "© 2026 SMB.",
+      },
+      en: {
+        "nav-work": "Work",
+        "nav-services": "Services",
+        "nav-pricing": "Pricing",
+        "nav-faq": "FAQ",
+        "nav-cta": "Contact Us",
+        "mobile-nav-cta": "Contact Us",
+        "trust-badge": "Now taking on new projects",
+        "hero-h1": "First impressions happen online.",
+        "hero-h1-sub": "<span class=\"gradient-text\">Make yours count.</span>",
+        "hero-subtitle": "Fast, sharp websites for local businesses and freelancers. Built to get you found, earn trust, and turn visitors into customers.",
+        "hero-cta": "Contact Us",
+        "stat-1-label": "Sites Delivered",
+        "stat-2-num": "7 days",
+        "stat-2-label": "Avg. Launch Time",
+        "stat-3-label": "Mobile-Ready",
+        "portfolio-h2": "Built for <span class=\"gradient-text\">Real Businesses</span>",
+        "portfolio-subtitle": "From restaurants and boutiques to salons and service businesses — here's a taste of recent work.",
+        "services-h2": "Everything your <span class=\"gradient-text\">new site needs</span>",
+        "services-subtitle": "We handle the whole process — from first conversation to launch day. No tech headaches for you.",
+        "services-how-label": "How It Works",
+        "services-narrative": "Most local businesses are invisible online — or have a site that looks outdated and loads slowly. We fix that. Starting with a call to understand your business, we design and build a fast, modern site tailored to your customers. You get a site that ranks on Google, looks great on every device, and actually turns visitors into leads.",
+        "svc-1-title": "Custom Design",
+        "svc-1-desc": "No generic templates. Every site is designed from scratch to match your brand and speak to your customers.",
+        "svc-2-title": "SEO & Google Visibility",
+        "svc-2-desc": "Built-in on-page SEO so your business shows up when local customers search for what you offer.",
+        "svc-3-title": "Mobile-First",
+        "svc-3-desc": "Over 70% of customers browse on their phones. Every site we build looks and performs perfectly on all screen sizes.",
+        "svc-4-title": "Fast Load Speed",
+        "svc-4-desc": "Clean, optimised code. No bloated plugins. Sites that load in under 2 seconds — because slow sites lose customers.",
+        "case-name": "Most Popular Package",
+        "case-type": "Full Business Website · 5–7 pages",
+        "case-days-label": "Days to Launch",
+        "case-mobile-label": "Mobile Ready",
+        "case-seo-label": "Built-In",
+        "case-rev-label": "Revisions",
+        "feat-1": "Custom domain setup",
+        "feat-2": "Google Business integration",
+        "feat-3": "Contact & booking forms",
+        "feat-4": "Photo gallery",
+        "feat-5": "SSL certificate (HTTPS)",
+        "feat-6": "Speed optimised",
+        "pricing-h2": "Simple, Honest <span class=\"gradient-text\">Pricing</span>",
+        "pricing-subtitle": "",
+        "sale-text": "Introductory pricing — <strong>these rates won't last.</strong> Offer ends in",
+        "cd-days-label": "Days",
+        "cd-hrs-label": "Hrs",
+        "cd-min-label": "Min",
+        "cd-sec-label": "Sec",
+        "plan-1-tag": "Starter",
+        "plan-1-name": "Landing Page",
+        "plan-1-was": "$549",
+        "plan-1-save": "Save $220",
+        "plan-1-price": "$329",
+        "plan-1-sup": "$",
+        "plan-1-num": "329",
+        "plan-1-desc": "Ideal for freelancers, creatives, and anyone who needs a clean online presence — a sharp single page that shows who you are and gets you hired.",
+        "plan-1-f1": "1-page custom design",
+        "plan-1-f2": "Mobile responsive",
+        "plan-1-f3": "Contact form",
+        "plan-1-f4": "Basic on-page SEO",
+        "plan-1-f5": "Delivered in 3–5 days",
+        "plan-1-cta": "Get Started",
+        "plan-2-tag": "Most Popular",
+        "plan-2-name": "Business Website",
+        "plan-2-was": "$1,199",
+        "plan-2-save": "Save $440",
+        "plan-2-price": "$759",
+        "plan-2-sup": "$",
+        "plan-2-num": "759",
+        "plan-2-desc": "Built for local businesses that want to be found online. A full site that builds credibility, ranks on Google, and turns visitors into paying customers.",
+        "plan-2-f1": "5–7 custom pages",
+        "plan-2-f2": "Full mobile design",
+        "plan-2-f3": "SEO setup + Google Maps",
+        "plan-2-f4": "Contact & booking forms",
+        "plan-2-f5": "Photo gallery",
+        "plan-2-f6": "Domain + SSL setup",
+        "plan-2-f7": "Delivered in 7 days",
+        "plan-2-cta": "Get Started",
+        "plan-3-tag": "Premium",
+        "plan-3-name": "Growth Package",
+        "plan-3-was": "$2,099",
+        "plan-3-save": "Save $660",
+        "plan-3-price": "$1,399",
+        "plan-3-sup": "$",
+        "plan-3-num": "1,399",
+        "plan-3-desc": "For established businesses that want to stay ahead. Ongoing management, SEO, and monthly updates so your site keeps working as your business scales.",
+        "plan-3-f1": "Everything in Business",
+        "plan-3-f2": "Blog / news section",
+        "plan-3-f3": "Monthly content updates",
+        "plan-3-f4": "Ongoing SEO monitoring",
+        "plan-3-f5": "Priority support",
+        "plan-3-f6": "Performance reports",
+        "plan-3-cta": "Get Started",
+        "ww-label": "Who We Work With",
+        "ww-h2": "Built for businesses <span class=\"gradient-text\">ready to grow</span>",
+        "ww-p": "We work with all kinds of businesses — from freelancers who need a sharp first impression, to local shops that want to be found on Google, to growing brands that need a reliable team behind them.",
+        "dcard-1-title": "Local first.",
+        "dcard-1-desc": "Restaurants, cafés, salons, gyms, boutiques, clinics, tradespeople — if you serve local customers, we're built for you.",
+        "dcard-2-title": "7 days.",
+        "dcard-2-desc": "Most projects go live in a week. Fast turnaround without any compromise on quality or attention to detail.",
+        "dcard-3-title": "We host it.",
+        "dcard-3-desc": "We handle hosting so you don't have to think about it — or we hand the keys over to you if you prefer full control.",
+        "faq-h2": "Frequently Asked <span class=\"gradient-text\">Questions</span>",
+        "faq-subtitle": "Everything you need to know before we get started.",
+        "faq-1-q": "What kind of businesses do you work with?",
+        "faq-1-a": "We work with all kinds of local businesses — restaurants, cafés, salons, gyms, boutiques, dental clinics, plumbers, photographers, and more. If you serve customers in your area and need a professional online presence, we can help.",
+        "faq-2-q": "How long does it take to build my website?",
+        "faq-2-a": "Landing pages are typically ready in 3–5 days. Full business websites launch in about 7 days. E-commerce stores take 10–14 days depending on the number of products. The timeline starts once you've provided your content (text, photos, logo).",
+        "faq-3-q": "Do I need to provide photos and text?",
+        "faq-3-a": "Ideally yes — your own photos and words always make a site feel more authentic. But if you don't have them, we can source high-quality stock photos and write the copy for you — just let us know and we'll sort it out together.",
+        "faq-4-q": "Will my site show up on Google?",
+        "faq-4-a": "Every site we build includes on-page SEO setup — proper headings, meta tags, fast load speed, and Google Business integration. This gives you a solid foundation to rank locally. SEO takes time, but you'll be starting in the right position from day one.",
+        "faq-5-q": "What happens after the site goes live?",
+        "faq-5-a": "You own the site completely. We'll walk you through how to make basic updates yourself. If you need ongoing changes or maintenance, we offer flexible support packages — just get in touch.",
+        "cta-h2": "Let's build your <span class=\"gradient-text\">website.</span>",
+        "cta-desc": "A few ways to get in touch.",
+        "cta-email": "Email Us",
+        "cta-whatsapp": "WhatsApp",
+        "cta-call": "Call Us",
+        "cta-or": "or",
+        "cta-cal-text": "Book a free 15-minute intro call — pick a time that works for you.",
+        "trust-pill-1": "Free quote, no obligation",
+        "trust-pill-2": "Reply within 24 hours",
+        "footer-copy": "© 2026 SMB.",
+      }
+    };
+
+    const EU_COUNTRIES = new Set([
+      'AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE',
+      'IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+      'CH','NO','IS','AL','BA','ME','MK','RS','XK','MD','UA','BY','GE','AM','AZ'
+    ]);
+
+    function applyLang(lang) {
+      const t = translations[lang];
+      document.documentElement.lang = lang;
+
+      // Nav links (desktop + mobile)
+      document.querySelectorAll('a[href="#work"]').forEach(el => el.textContent = t['nav-work']);
+      document.querySelectorAll('a[href="#services"]').forEach(el => el.textContent = t['nav-services']);
+      document.querySelectorAll('a[href="#pricing"]').forEach(el => el.textContent = t['nav-pricing']);
+      document.querySelectorAll('a[href="#faq"]').forEach(el => el.textContent = t['nav-faq']);
+      const navCtaBtn = document.querySelector('.nav-links a[href="#contact"]');
+      if (navCtaBtn) navCtaBtn.textContent = t['nav-cta'];
+      document.querySelectorAll('.mobile-nav-drawer a[href="#contact"]').forEach(el => el.textContent = t['mobile-nav-cta']);
+
+      // Trust badge
+      const badge = document.querySelector('.trust-badge span');
+      if (badge) badge.textContent = t['trust-badge'];
+
+      // Hero
+      const h1 = document.querySelector('.hero-content h1');
+      if (h1) h1.textContent = t['hero-h1'];
+      const h1sub = document.querySelector('.hero-h1-sub');
+      if (h1sub) h1sub.innerHTML = t['hero-h1-sub'];
+      const heroSub = document.querySelector('.hero-subtitle');
+      if (heroSub) heroSub.textContent = t['hero-subtitle'];
+      const heroCta = document.querySelector('.hero-content .btn-primary');
+      if (heroCta) heroCta.innerHTML = t['hero-cta'] + ' <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+      const statLabels = document.querySelectorAll('.stat-label');
+      const statNums   = document.querySelectorAll('.stat-number');
+      if (statLabels[0]) statLabels[0].textContent = t['stat-1-label'];
+      if (statNums[1])   statNums[1].textContent   = t['stat-2-num'];
+      if (statLabels[1]) statLabels[1].textContent = t['stat-2-label'];
+      if (statLabels[2]) statLabels[2].textContent = t['stat-3-label'];
+
+      // Portfolio
+      const portSection = document.querySelector('#work');
+      if (portSection) {
+        const h2 = portSection.querySelector('h2');
+        const sub = portSection.querySelector('.section-subtitle');
+        if (h2) h2.innerHTML = t['portfolio-h2'];
+        if (sub) sub.textContent = t['portfolio-subtitle'];
+      }
+
+      // Services
+      const svcSection = document.querySelector('#services');
+      if (svcSection) {
+        const h2 = svcSection.querySelector('h2');
+        const sub = svcSection.querySelector('.section-subtitle');
+        if (h2) h2.innerHTML = t['services-h2'];
+        if (sub) sub.textContent = t['services-subtitle'];
+        // "How It Works" label — first uppercase small text in services
+        const howLabel = svcSection.querySelector('[style*="letter-spacing: 0.12em"]');
+        if (howLabel) howLabel.textContent = t['services-how-label'];
+        // Narrative paragraph
+        const narr = svcSection.querySelector('p[style*="line-height: 1.75"]');
+        if (narr) narr.textContent = t['services-narrative'];
+        const svcTitles = svcSection.querySelectorAll('.service-title');
+        const svcDescs  = svcSection.querySelectorAll('.service-desc');
+        ['svc-1','svc-2','svc-3','svc-4'].forEach((k,i) => {
+          if (svcTitles[i]) svcTitles[i].textContent = t[k+'-title'];
+          if (svcDescs[i])  svcDescs[i].textContent  = t[k+'-desc'];
+        });
+        const caseName = svcSection.querySelector('.case-name');
+        const caseType = svcSection.querySelector('.case-type');
+        if (caseName) caseName.textContent = t['case-name'];
+        if (caseType) caseType.textContent = t['case-type'];
+        const caseStatLabels = svcSection.querySelectorAll('.case-stat-label');
+        ['case-days-label','case-mobile-label','case-seo-label','case-rev-label'].forEach((k,i) => {
+          if (caseStatLabels[i]) caseStatLabels[i].textContent = t[k];
+        });
+        const featTexts = svcSection.querySelectorAll('.pkg-feature-text');
+        ['feat-1','feat-2','feat-3','feat-4','feat-5','feat-6'].forEach((k,i) => {
+          if (featTexts[i]) featTexts[i].textContent = t[k];
+        });
+      }
+
+      // Pricing
+      const pricingSection = document.querySelector('#pricing');
+      if (pricingSection) {
+        const h2 = pricingSection.querySelector('h2');
+        const sub = pricingSection.querySelector('.section-subtitle');
+        if (h2) h2.innerHTML = t['pricing-h2'];
+        if (sub) sub.textContent = t['pricing-subtitle'];
+        const saleSpan = pricingSection.querySelector('.sale-banner-label span');
+        if (saleSpan) saleSpan.innerHTML = t['sale-text'];
+        const cdLabels = pricingSection.querySelectorAll('.countdown-label');
+        ['cd-days-label','cd-hrs-label','cd-min-label','cd-sec-label'].forEach((k,i) => {
+          if (cdLabels[i]) cdLabels[i].textContent = t[k];
+        });
+        const cards = pricingSection.querySelectorAll('.pricing-card');
+        ['plan-1','plan-2','plan-3'].forEach((k, i) => {
+          const card = cards[i];
+          if (!card) return;
+          const tag   = card.querySelector('.pricing-tag');
+          const name  = card.querySelector('.pricing-name');
+          const was   = card.querySelector('.price-was');
+          const save  = card.querySelector('.price-save');
+          const price = card.querySelector('.pricing-price');
+          const desc  = card.querySelector('.pricing-desc');
+          const cta   = card.querySelector('.pricing-cta');
+          const feats = card.querySelectorAll('.pricing-features li');
+          if (tag)   tag.textContent  = t[k+'-tag'];
+          if (name)  name.textContent = t[k+'-name'];
+          if (was)   was.textContent  = t[k+'-was'];
+          if (save)  save.textContent = t[k+'-save'];
+          if (price) price.innerHTML  = '<sup>' + t[k+'-sup'] + '</sup>' + t[k+'-num'];
+          if (desc)  desc.textContent = t[k+'-desc'];
+          if (cta)   cta.textContent  = t[k+'-cta'];
+          const fKeys = Object.keys(t).filter(key => key.startsWith(k+'-f')).sort();
+          feats.forEach((li, fi) => {
+            const check = li.querySelector('.check');
+            li.textContent = '';
+            if (check) li.appendChild(check);
+            li.appendChild(document.createTextNode(' ' + (t[fKeys[fi]] || '')));
+          });
+        });
+      }
+
+      // Who We Work With
+      const wwLabel = document.querySelector('.ww-copy .proof-section-label');
+      if (wwLabel) wwLabel.textContent = t['ww-label'];
+      const wwH2 = document.querySelector('.ww-copy h2');
+      if (wwH2) wwH2.innerHTML = t['ww-h2'];
+      const wwP = document.querySelector('.ww-copy p');
+      if (wwP) wwP.textContent = t['ww-p'];
+      const dcards = document.querySelectorAll('.dcard');
+      ['dcard-1','dcard-2','dcard-3'].forEach((k,i) => {
+        const card = dcards[i];
+        if (!card) return;
+        const title = card.querySelector('.dcard-title');
+        const desc  = card.querySelector('.dcard-desc');
+        if (title) title.textContent = t[k+'-title'];
+        if (desc)  desc.textContent  = t[k+'-desc'];
+      });
+
+      // FAQ
+      const faqSection = document.querySelector('#faq');
+      if (faqSection) {
+        const h2 = faqSection.querySelector('h2');
+        const sub = faqSection.querySelector('.section-subtitle');
+        if (h2) h2.innerHTML = t['faq-h2'];
+        if (sub) sub.textContent = t['faq-subtitle'];
+        const faqQs = faqSection.querySelectorAll('.faq-question');
+        const faqAs = faqSection.querySelectorAll('.faq-answer');
+        [1,2,3,4,5].forEach(n => {
+          const q = faqQs[n-1];
+          const a = faqAs[n-1];
+          if (q) {
+            const svg = q.querySelector('svg');
+            q.textContent = t['faq-'+n+'-q'];
+            if (svg) q.appendChild(svg);
+          }
+          if (a) a.textContent = t['faq-'+n+'-a'];
+        });
+      }
+
+      // CTA
+      const ctaSection = document.querySelector('#contact');
+      if (ctaSection) {
+        const h2 = ctaSection.querySelector('h2');
+        const desc = ctaSection.querySelector('.cta-desc');
+        if (h2) h2.innerHTML = t['cta-h2'];
+        if (desc) desc.textContent = t['cta-desc'];
+        const waBtn = ctaSection.querySelector('a[href*="wa.me"]');
+        if (waBtn) waBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.861L.057 23.927l6.266-1.641A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.853 0-3.587-.5-5.084-1.373l-.361-.214-3.741.981.998-3.648-.235-.374A9.94 9.94 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg> ' + t['cta-whatsapp'];
+        const callBtn = ctaSection.querySelector('a[href*="tel"]');
+        if (callBtn) { const svg = callBtn.querySelector('svg'); callBtn.textContent = t['cta-call']; if (svg) callBtn.prepend(svg); }
+        const emailBtn = ctaSection.querySelector('a[href*="mailto"]');
+        if (emailBtn) emailBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> ' + t['cta-email'];
+        const orSpan = ctaSection.querySelector('.cal-or-divider span');
+        if (orSpan) orSpan.textContent = t['cta-or'];
+        const calText = ctaSection.querySelector('.cal-or-text');
+        if (calText) calText.textContent = t['cta-cal-text'];
+        const trustPills = ctaSection.querySelectorAll('.trust-pill');
+        if (trustPills[0]) trustPills[0].textContent = t['trust-pill-1'];
+        if (trustPills[1]) trustPills[1].textContent = t['trust-pill-2'];
+      }
+
+      // Footer
+      const copyright = document.querySelector('.copyright');
+      if (copyright) copyright.textContent = t['footer-copy'];
+    }
+
+    fetch('https://ipapi.co/json/')
+      .then(r => r.json())
+      .then(data => {
+        const country = (data.country_code || '').toUpperCase();
+        applyLang(EU_COUNTRIES.has(country) ? 'it' : 'en');
+      })
+      .catch(() => {
+        const browserLang = (navigator.language || '').toLowerCase();
+        applyLang(browserLang.startsWith('it') ? 'it' : 'en');
+      });
+  })();
+  </script>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    const drawer = document.getElementById("mobile-nav-drawer");
+    const iconOpen = document.getElementById("menu-icon-open");
+    const iconClose = document.getElementById("menu-icon-close");
+    let menuOpen = false;
+
+    menuBtn.addEventListener("click", function() {
+      menuOpen = !menuOpen;
+      drawer.classList.toggle("open", menuOpen);
+      iconOpen.style.display = menuOpen ? "none" : "";
+      iconClose.style.display = menuOpen ? "" : "none";
+      menuBtn.setAttribute("aria-expanded", menuOpen);
+    });
+
+    drawer.querySelectorAll("a").forEach(function(link) {
+      link.addEventListener("click", function() {
+        menuOpen = false;
+        drawer.classList.remove("open");
+        iconOpen.style.display = "";
+        iconClose.style.display = "none";
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    function toggleFaq(element) {
+      const item = element.parentElement;
+      item.classList.toggle('active');
+    }
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+
+    // ─── Glowing Gradient Mesh ───
+    (function() {
+      const canvas = document.getElementById('mesh-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      const points = [];
+      const COUNT = 6;
+      const COLORS = [
+        { r: 255, g: 107, b: 0 },   // orange (accent)
+        { r: 255, g: 60,  b: 0 },   // deep orange
+        { r: 200, g: 80,  b: 0 },   // amber
+        { r: 255, g: 140, b: 40 },  // warm orange
+        { r: 120, g: 40,  b: 0 },   // dark rust
+        { r: 255, g: 90,  b: 20 },  // bright orange
+      ];
+
+      function resize() {
+        canvas.width  = canvas.offsetWidth  * window.devicePixelRatio;
+        canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+        ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      for (let i = 0; i < COUNT; i++) {
+        points.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          color: COLORS[i % COLORS.length],
+          radius: 320 + Math.random() * 280,
+        });
+      }
+
+      function draw() {
+        const W = canvas.offsetWidth;
+        const H = canvas.offsetHeight;
+        ctx.clearRect(0, 0, W, H);
+
+        for (const p of points) {
+          // Move
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < -p.radius)       p.x = W + p.radius;
+          else if (p.x > W + p.radius) p.x = -p.radius;
+          if (p.y < -p.radius)       p.y = H + p.radius;
+          else if (p.y > H + p.radius) p.y = -p.radius;
+
+          // Draw radial gradient blob
+          const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius);
+          g.addColorStop(0,   `rgba(${p.color.r},${p.color.g},${p.color.b},0.13)`);
+          g.addColorStop(0.4, `rgba(${p.color.r},${p.color.g},${p.color.b},0.06)`);
+          g.addColorStop(1,   `rgba(${p.color.r},${p.color.g},${p.color.b},0)`);
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = g;
+          ctx.fill();
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+    })();
+
+
+
+
+
+
+// ─── Sticky stacked cards ───
+    (function() {
+      const cards = Array.from(document.querySelectorAll('.dcard'));
+      let current = null;
+
+      function activate(card) {
+        if (current && current !== card) current.classList.remove('active');
+        card.classList.add('active');
+        current = card;
+      }
+
+      function deactivateAll() {
+        if (current) current.classList.remove('active');
+        current = null;
+      }
+
+      cards.forEach(card => {
+        // Desktop hover
+        card.addEventListener('mouseenter', () => activate(card));
+        // Mobile tap
+        card.addEventListener('touchstart', (e) => {
+          e.preventDefault();
+          activate(card);
+        }, { passive: false });
+      });
+
+      const wrap = document.querySelector('.stack-cards');
+      if (wrap) {
+        wrap.addEventListener('mouseleave', deactivateAll);
+        // Tap outside to deactivate on mobile
+        document.addEventListener('touchstart', function(e) {
+          if (!e.target.closest('.stack-cards')) deactivateAll();
+        }, { passive: true });
+      }
+    })();
+  </script>
+</body>
+</html>
